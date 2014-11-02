@@ -4,6 +4,12 @@ server {
   {% if nginx_site_server_name | length -%}
   server_name {{ nginx_site_server_name }};
   {% endif %}
+  
+  {% if nginx_site_custom is defined %}
+    {% for custom in nginx_site_custom %}
+      {{ custom }}
+    {% endfor %}
+  {% endif -%}
 
   access_log /var/log/nginx/{{ nginx_site_name }}.access.log;
 
